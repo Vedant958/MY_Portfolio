@@ -1,0 +1,31 @@
+/* ─── DESIGN TOKENS — Cyberpunk HUD Portfolio ───────────────── */
+:root {
+  /* Backgrounds */
+  --bg-void:          #05050A;
+  --bg-panel:         #0D0D18;
+  --bg-panel-raised:  #12121F;
+
+  /* Neon Accents */
+  --neon-magenta:     #FF2E9A;
+  --neon-cyan:        #0FF0FC;
+  --neon-purple:      #7B2FFF;
+  --neon-green:       #39FF9E;
+
+  /* Text */
+  --text-primary:     #EDEDF5;
+  --text-secondary:   #9A9AB0;
+  --text-muted:       #5C5C70;
+
+  /* Borders */
+  --border-glass:       rgba(255,255,255,0.08);
+  --border-glass-hover: rgba(255,255,255,0.16);
+
+  /* HUD overlay */
+  --grid-line:         rgba(15,240,252,0.05);
+  --overlay-scanline:  rgba(255,255,255,0.02);
+
+  /* Gradients */
+  --gradient-hero:   radial-gradient(circle at 50% 30%, rgba(255,46,154,0.25) 0%, rgba(123,47,255,0.12) 35%, rgba(5,5,10,0) 70%);
+  --gradient-cta:    linear-gradient(90deg, #FF2E9A 0%, #7B2FFF 100%);
+  --gradient-divider:linear-gradient(90deg, transparent 0%, #0FF0FC 50%, transparent 100%);
+}
