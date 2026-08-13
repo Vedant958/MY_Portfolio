@@ -107,7 +107,7 @@ export default function Skills() {
                             icon={SkillIcon}
                             label={skill.name}
                             level={skill.badge}
-                            color={isCyan ? 'cyan' : 'emerald'}
+                            color="cyan"
                           />
                         )
                       })}

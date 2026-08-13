@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FolderGit2, Mail, Copy, Check, Send, Terminal, Shield } from 'lucide-react'
 import SectionLabel from '../ui/SectionLabel'
 import GlassPanel from '../ui/GlassPanel'
+import ContactVisual from '../ui/ContactVisual'
 
 const EMAIL = 'vedantvarshney958@gmail.com'
 
@@ -49,11 +50,7 @@ export default function Contact() {
         {/* Left Side: Contact Channels */}
         <div className="flex flex-col gap-8">
           <div className="w-full h-40 overflow-hidden rounded-xl border border-slate-200/60 bg-white shadow-sm">
-            <img
-              src="https://lh3.googleusercontent.com/aida/AP1WRLshuT3gOjeS47RFExWbPklrpQ_pOf3zT3_XA1oY4Nm1XvHW9JF81-74B8Qbt-VYcUFB_BbxvZef3dY0RMMn0ehsbJh9BJz9b_UDulwAT1D7mPtQ4h9IwQfgz7YWPyTflSJ5lDFRlcXnrmRJnEOUviu03yWPVjAj815HDzxDtTGdi75xsKwTQWrqdGzu8CsGriELvVI6Fwym4OuI1_Y_IVl95thbjob4dcg5Jk-Kyb67Hv7Yg3rbFCmw"
-              alt="Connection abstract visual"
-              className="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
-            />
+            <ContactVisual />
           </div>
 
           <p className="text-[17px] leading-relaxed text-slate-600">

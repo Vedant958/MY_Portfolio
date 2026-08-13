@@ -4,6 +4,7 @@ import { User, MapPin, GraduationCap, Code, Cpu, Activity, Terminal } from 'luci
 import SectionLabel from '../ui/SectionLabel'
 import GlassPanel from '../ui/GlassPanel'
 import StatusPill from '../ui/StatusPill'
+import DeveloperProfileVisual from '../ui/DeveloperProfileVisual'
 
 const SYSTEM_FACTS = [
   { label: 'LOCATION', value: 'Aligarh, Uttar Pradesh, India', icon: MapPin },
@@ -41,11 +42,7 @@ export default function About() {
         >
           <div className="glass-panel p-8 flex flex-col gap-5">
             <div className="w-full h-48 mb-2 overflow-hidden rounded-xl border border-slate-200/60 bg-white shadow-sm">
-              <img
-                src="https://lh3.googleusercontent.com/aida/AP1WRLvjJZvQwXYxvhwAtC1DuX0cqHfaJNbfk7vb6vGhPanjO_eVPO9bht1J1UOXsF1fIp8UvEBzZ2aWORELRix6VjsqUG_R1R2ijYhIMqMFmVe-4nlpV1vIxFt7mU-Iu_fEgV8Oi7uRuWpr-8ExPbGFZbeqESN-Tppl39QpFB-oDLlCMVLHTb9W_0KtugPDExLadmZG0etqmHhemBQxi7x6leQD8PBn4mk1h02jIErVafjckRMDcu-biwarSg"
-                alt="Learning by building abstract visual"
-                className="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
-              />
+              <DeveloperProfileVisual />
             </div>
             
             <p className="text-[18px] sm:text-[20px] font-medium leading-relaxed text-slate-800">
