@@ -1,13 +1,5 @@
 import { useState, useEffect } from 'react'
 import { ArrowUp, FolderGit2, Mail } from 'lucide-react'
-
-const LinkedInIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-)
 import Nav from './components/layout/Nav'
 import EdgeLighting from './components/layout/EdgeLighting'
 import ScrollProgress from './components/layout/ScrollProgress'
@@ -20,6 +12,14 @@ import Skills from './components/sections/Skills'
 import Certifications from './components/sections/Certifications'
 import Contact from './components/sections/Contact'
 import { useLenis, scrollTo } from './hooks/useLenis'
+
+const LinkedInIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+)
 
 const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'certs', 'contact']
 
@@ -90,13 +90,13 @@ export default function App() {
       if (!el) return null
       const obs = new IntersectionObserver(
         ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
-        { threshold: 0.3 }
+        { threshold: 0.25 }
       )
       obs.observe(el)
       return obs
     }).filter(Boolean)
 
-    const scrollHandler = () => setShowBackTop(window.scrollY > window.innerHeight * 0.7)
+    const scrollHandler = () => setShowBackTop(window.scrollY > window.innerHeight * 0.6)
     window.addEventListener('scroll', scrollHandler, { passive: true })
 
     return () => {
@@ -107,7 +107,7 @@ export default function App() {
 
   return (
     <>
-      {/* Global edge neon lighting and backdrop layers */}
+      {/* Viewport edge lighting & background layers */}
       <EdgeLighting />
       <GridBackground />
       <ParticleCanvas />
@@ -116,7 +116,7 @@ export default function App() {
       {/* Navigation header */}
       <Nav activeSection={activeSection} />
 
-      {/* Main page content */}
+      {/* Main page sections */}
       <main className="relative z-10">
         <Hero />
         <About />

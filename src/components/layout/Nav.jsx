@@ -4,11 +4,12 @@ import { Menu, X } from 'lucide-react'
 import { scrollTo } from '../../hooks/useLenis'
 
 const NAV_SECTIONS = [
-  { label: 'HOME',     href: '#hero' },
-  { label: 'ABOUT',    href: '#about' },
-  { label: 'PROJECTS', href: '#projects' },
-  { label: 'SKILLS',   href: '#skills' },
-  { label: 'CONTACT',  href: '#contact' },
+  { label: 'HOME',           href: '#hero' },
+  { label: 'ABOUT',          href: '#about' },
+  { label: 'PROJECTS',       href: '#projects' },
+  { label: 'SKILLS',         href: '#skills' },
+  { label: 'CERTIFICATIONS', href: '#certs' },
+  { label: 'CONTACT',        href: '#contact' },
 ]
 
 export default function Nav({ activeSection }) {
@@ -43,14 +44,14 @@ export default function Nav({ activeSection }) {
         className="font-mono text-base font-bold tracking-widest mr-auto flex items-center gap-1 group"
         style={{ color: 'var(--neon-cyan)' }}
       >
-        <span className="px-2 py-0.5 rounded border border-cyan-500/30 bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors">
+        <span className="px-2.5 py-1 rounded-md border border-cyan-500/30 bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors shadow-xs">
           VV_
         </span>
         <span className="cursor-blink" />
       </a>
 
       {/* Desktop navigation */}
-      <ul className="hidden md:flex items-center gap-8 list-none">
+      <ul className="hidden md:flex items-center gap-7 list-none">
         {NAV_SECTIONS.map(s => {
           const isActive = activeSection === s.href.replace('#', '')
           return (
@@ -58,7 +59,7 @@ export default function Nav({ activeSection }) {
               <a
                 href={s.href}
                 onClick={e => handleNav(e, s.href)}
-                className="font-mono text-[13px] font-semibold uppercase tracking-[0.12em] py-1 transition-colors duration-200"
+                className="font-mono text-[12px] lg:text-[13px] font-bold uppercase tracking-[0.12em] py-1 transition-colors duration-200"
                 style={{
                   color: isActive ? 'var(--neon-cyan)' : 'var(--text-secondary)',
                 }}
@@ -80,7 +81,7 @@ export default function Nav({ activeSection }) {
 
       {/* Mobile Hamburger toggle */}
       <button
-        className="md:hidden p-2 rounded-lg border border-slate-200 bg-white/80 text-cyan-600 focus:outline-none"
+        className="md:hidden p-2 rounded-lg border border-slate-200 bg-white/90 text-cyan-600 focus:outline-none shadow-xs"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle mobile navigation menu"
       >
@@ -95,7 +96,7 @@ export default function Nav({ activeSection }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[72px] left-4 right-4 bg-white/95 backdrop-blur-xl rounded-xl border border-slate-200 shadow-xl p-6 flex flex-col gap-4 md:hidden"
+            className="absolute top-[72px] left-4 right-4 bg-white/95 backdrop-blur-xl rounded-xl border border-slate-200 shadow-xl p-6 flex flex-col gap-3 md:hidden"
           >
             {NAV_SECTIONS.map(s => {
               const isActive = activeSection === s.href.replace('#', '')
@@ -104,7 +105,7 @@ export default function Nav({ activeSection }) {
                   key={s.label}
                   href={s.href}
                   onClick={e => handleNav(e, s.href)}
-                  className={`font-mono text-sm font-semibold uppercase tracking-widest px-4 py-2.5 rounded-lg transition-all ${
+                  className={`font-mono text-xs font-bold uppercase tracking-widest px-4 py-2.5 rounded-lg transition-all ${
                     isActive
                       ? 'bg-cyan-500/10 text-cyan-600 border border-cyan-500/30'
                       : 'text-slate-700 hover:bg-slate-100'
@@ -120,4 +121,3 @@ export default function Nav({ activeSection }) {
     </nav>
   )
 }
-

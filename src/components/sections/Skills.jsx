@@ -1,13 +1,20 @@
-import { motion } from 'framer-motion'
-import { Cpu, Code2, Sparkles, Terminal, CheckCircle2 } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Cpu, Code2, Sparkles, Terminal, Brain, CheckCircle2, ChevronDown } from 'lucide-react'
 import SectionLabel from '../ui/SectionLabel'
 import GlassPanel from '../ui/GlassPanel'
 import CurrentFocus from './CurrentFocus'
 import { skillCategories } from '../../data/skills'
 
-const ICONS = { Cpu, Code2, Sparkles, Terminal }
+const ICONS = { Cpu, Code2, Sparkles, Terminal, Brain }
 
 export default function Skills() {
+  const [expanded, setExpanded] = useState({})
+
+  const toggleGroup = (id) => {
+    setExpanded(prev => ({ ...prev, [id]: !prev[id] }))
+  }
+
   return (
     <section id="skills" className="py-28 px-6 md:px-16 max-w-[1280px] mx-auto">
       <div className="section-divider mb-16" />
@@ -16,7 +23,7 @@ export default function Skills() {
         className="font-orbitron font-bold text-slate-900 mb-12"
         style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}
       >
-        Technical Skillset
+        Technical Competencies
       </h2>
 
       {/* Current Focus Banner */}
@@ -24,58 +31,76 @@ export default function Skills() {
         <CurrentFocus />
       </div>
 
-      {/* Visual Skill Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Skill Categories Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((group, idx) => {
           const Icon = ICONS[group.icon] || Cpu
+          const isExpanded = expanded[group.id] !== false // Default open
+
           return (
             <motion.div
               key={group.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              transition={{ delay: idx * 0.08, duration: 0.5 }}
             >
-              <GlassPanel className="p-7 hud-corners h-full flex flex-col justify-between">
+              <GlassPanel className="p-6 hud-corners h-full flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200/80">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-600">
-                        <Icon size={20} />
+                  <div
+                    className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200/80 cursor-pointer select-none"
+                    onClick={() => toggleGroup(group.id)}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600">
+                        <Icon size={18} />
                       </div>
-                      <h3 className="font-orbitron text-lg font-bold text-slate-900">
+                      <h3 className="font-orbitron text-base font-bold text-slate-900">
                         {group.title}
                       </h3>
                     </div>
-                    <span className="font-mono text-[11px] font-bold text-slate-400">
-                      0{idx + 1}
-                    </span>
+
+                    <button className="p-1 text-slate-400 hover:text-cyan-600 transition-colors">
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                      />
+                    </button>
                   </div>
 
-                  <p className="text-[13px] text-slate-500 mb-6">
+                  <p className="text-xs text-slate-500 mb-4">
                     {group.description}
                   </p>
                 </div>
 
-                {/* Skill Tag Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-auto">
-                  {group.skills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all group"
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="flex flex-col gap-2 mt-auto"
                     >
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-cyan-600 group-hover:scale-110 transition-transform" />
-                        <span className="font-sans text-sm font-bold text-slate-800">
-                          {skill.name}
-                        </span>
-                      </div>
-                      <span className="font-mono text-[10px] font-semibold tracking-wider text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded">
-                        {skill.badge}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                      {group.skills.map((skill) => (
+                        <div
+                          key={skill.name}
+                          className="p-3 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-between hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all group"
+                        >
+                          <div className="flex items-center gap-2">
+                            <CheckCircle2 size={15} className="text-cyan-600 group-hover:scale-110 transition-transform" />
+                            <span className="font-sans text-xs font-bold text-slate-800">
+                              {skill.name}
+                            </span>
+                          </div>
+                          <span className="font-mono text-[10px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded">
+                            {skill.badge}
+                          </span>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </GlassPanel>
             </motion.div>
           )

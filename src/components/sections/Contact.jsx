@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { FolderGit2, Mail, Copy, Check, Send } from 'lucide-react'
+import { FolderGit2, Mail, Copy, Check, Send, Terminal, Shield } from 'lucide-react'
 import SectionLabel from '../ui/SectionLabel'
 import GlassPanel from '../ui/GlassPanel'
 
 const EMAIL = 'vedantvarshney958@gmail.com'
 
-const LinkedInIcon = ({ size = 22, color = 'currentColor' }) => (
+const LinkedInIcon = ({ size = 20, color = 'currentColor' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
     <rect x="2" y="9" width="4" height="12" />
@@ -37,20 +37,37 @@ export default function Contact() {
   return (
     <section id="contact" className="py-28 px-6 md:px-16 max-w-[1280px] mx-auto">
       <div className="section-divider mb-16" />
-      <SectionLabel number="05">CONTACT</SectionLabel>
+      <SectionLabel number="05">COMMS</SectionLabel>
       <h2
         className="font-orbitron font-bold text-slate-900 mb-12"
         style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}
       >
-        Get In Touch
+        Terminal Channel
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 items-start">
         {/* Left Side: Contact Channels */}
         <div className="flex flex-col gap-8">
           <p className="text-[17px] leading-relaxed text-slate-600">
-            Interested in collaborating, asking about my projects, or just discussing web development? Reach out directly via email or social links!
+            Open channel — reach out directly via email or social links. I respond to inquiries regarding frontend development and project collaborations.
           </p>
+
+          {/* Terminal Info Widget */}
+          <div className="p-6 rounded-2xl bg-slate-900 text-slate-200 border border-cyan-500/30 shadow-lg font-mono text-xs flex flex-col gap-3">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <Terminal size={15} className="text-cyan-400" />
+                <span className="text-slate-300 font-bold">TRANSMISSION_TERMINAL // v2.0</span>
+              </div>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+            </div>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="text-cyan-400">$</span> ping -c 1 vedantvarshney958@gmail.com
+            </div>
+            <div className="text-emerald-400">
+              STATUS: 200 OK — CHANNEL OPEN
+            </div>
+          </div>
 
           {/* Social Icons */}
           <div className="flex gap-4">
@@ -59,14 +76,13 @@ export default function Contact() {
               { label: 'LinkedIn', href: 'https://linkedin.com/in/vedant2254', Icon: LinkedInIcon, color: '#0A66C2', id: 'contact-linkedin' },
               { label: 'Email', href: `mailto:${EMAIL}`, Icon: Mail, color: '#06B6D4', id: 'contact-email' },
             ].map(({ label, href, Icon, color, id }) => (
-
               <a
                 key={id}
                 id={id}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-panel w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm hover:border-cyan-500 hover:shadow-md"
+                className="glass-panel w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-xs hover:border-cyan-500 hover:shadow-md"
                 aria-label={label}
               >
                 <Icon size={22} style={{ color }} />
