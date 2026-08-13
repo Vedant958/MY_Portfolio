@@ -55,9 +55,18 @@ export default function ProjectCard({ title, tagline, description, tech, year, h
       <div className="p-7 flex flex-col flex-1 gap-4 bg-white/60 backdrop-blur-sm">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="font-orbitron text-[22px] font-bold text-slate-900 leading-snug group-hover:text-cyan-600 transition-colors">
-              {title}
-            </h3>
+            {links.live ? (
+              <a href={links.live} target="_blank" rel="noopener noreferrer">
+                <h3 className="font-orbitron text-[22px] font-bold text-slate-900 leading-snug hover:text-cyan-600 transition-colors cursor-pointer inline-flex items-center gap-2">
+                  {title}
+                  <ExternalLink size={16} className="text-slate-400 hover:text-cyan-500 transition-colors" />
+                </h3>
+              </a>
+            ) : (
+              <h3 className="font-orbitron text-[22px] font-bold text-slate-900 leading-snug group-hover:text-cyan-600 transition-colors">
+                {title}
+              </h3>
+            )}
             <p className="font-mono text-xs font-semibold text-cyan-600 mt-1">
               {tagline}
             </p>

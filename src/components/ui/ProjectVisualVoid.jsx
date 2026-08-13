@@ -11,9 +11,6 @@ export default function ProjectVisualVoid({ hovered = false }) {
         transition={{ duration: 0.5 }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60" />
-      <span className="absolute top-3 left-3 font-mono text-[11px] font-bold px-2.5 py-1 rounded bg-slate-900/90 text-emerald-400 border border-emerald-500/30">
-        [ SYSTEM CORE ]
-      </span>
     </div>
   )
 }

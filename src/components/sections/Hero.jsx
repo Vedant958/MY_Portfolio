@@ -3,7 +3,6 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { Download, ArrowRight, Sparkles, Terminal } from 'lucide-react'
 import StatusPill from '../ui/StatusPill'
 import Button from '../ui/Button'
-import HeroVisual from '../ui/HeroVisual'
 import { useDecodeText } from '../../hooks/useDecodeText'
 import { scrollTo } from '../../hooks/useLenis'
 
@@ -126,15 +125,6 @@ export default function Hero() {
           </Button>
         </motion.div>
 
-        {/* Stitch Generated Hero Visual Artwork Motif */}
-        <motion.div
-          className="w-full max-w-[500px] mt-8 px-4"
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <HeroVisual />
-        </motion.div>
       </motion.div>
     </section>
   )
