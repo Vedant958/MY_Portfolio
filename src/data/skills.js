@@ -1,33 +1,44 @@
-export const skillGroups = [
+export const skillCategories = [
   {
     id: 'programming',
     title: 'Programming Core',
     icon: 'Cpu',
-    items: [
-      { name: 'C',       level: 4 },
-      { name: 'Python',  level: 3 },
+    description: 'Foundation in algorithmic thinking & memory management.',
+    skills: [
+      { name: 'C', badge: 'Core Fundamental' },
+      { name: 'Python', badge: 'Scripting & Logic' },
     ],
   },
   {
     id: 'web',
     title: 'Web Technologies',
     icon: 'Code2',
-    items: [
-      { name: 'HTML',       level: 5 },
-      { name: 'CSS',        level: 4 },
-      { name: 'JavaScript', level: 3 },
-      { name: 'React',      level: 3 },
+    description: 'Markup & styling structure for modern user interfaces.',
+    skills: [
+      { name: 'HTML', badge: 'Semantic Structure' },
+      { name: 'CSS', badge: 'Layout & Animations' },
     ],
   },
   {
-    id: 'infra',
-    title: 'Infrastructure & Tools',
+    id: 'learning',
+    title: 'Currently Learning',
+    icon: 'Sparkles',
+    description: 'Actively building & mastering interactive frontend tech.',
+    skills: [
+      { name: 'JavaScript', badge: 'Dynamic Logic' },
+      { name: 'React', badge: 'Component Architecture' },
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Tools & Platform',
     icon: 'Terminal',
-    items: [
-      { name: 'Git',     level: 4 },
-      { name: 'GitHub',  level: 4 },
-      { name: 'Vercel',  level: 4 },
-      { name: 'VS Code', level: 5 },
+    description: 'Developer environment & deployment pipelines.',
+    skills: [
+      { name: 'Git', badge: 'Version Control' },
+      { name: 'GitHub', badge: 'Code Collaboration' },
+      { name: 'Vercel', badge: 'Deployment' },
+      { name: 'VS Code', badge: 'IDE Environment' },
     ],
   },
 ]

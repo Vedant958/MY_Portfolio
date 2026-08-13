@@ -4,11 +4,15 @@ export default function ParticleCanvas() {
   const canvasRef = useRef(null)
 
   useEffect(() => {
+    // Respect prefers-reduced-motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     let W, H, particles, raf
-    const COUNT = 900
+    const COUNT = 60
     let mouseX = 0, mouseY = 0
 
     function init() {
@@ -38,7 +42,7 @@ export default function ParticleCanvas() {
         if (p.y > H) p.y = 0
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(15,240,252,${p.opacity})`
+        ctx.fillStyle = `rgba(6, 182, 212, ${p.opacity * 0.7})`
         ctx.fill()
       })
       raf = requestAnimationFrame(draw)

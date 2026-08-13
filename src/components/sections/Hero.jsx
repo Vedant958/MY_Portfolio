@@ -1,142 +1,141 @@
-import { useRef, useEffect } from 'react'
-import { Download, ChevronDown } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { Download, ArrowRight, Sparkles } from 'lucide-react'
 import StatusPill from '../ui/StatusPill'
 import Button from '../ui/Button'
 import { useDecodeText } from '../../hooks/useDecodeText'
-import { useTypewriter } from '../../hooks/useTypewriter'
 import { scrollTo } from '../../hooks/useLenis'
 
 export default function Hero() {
   const { output: nameOutput } = useDecodeText('VEDANT VARSHNEY', { duration: 900, startDelay: 200 })
-  const { displayed: tagline } = useTypewriter(
-    'Strengthening web fundamentals through practical software engineering and interactive design.',
-    { speed: 28, startDelay: 1400 }
-  )
+
+  // Mouse Parallax Effect
+  const containerRef = useRef(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const smoothX = useSpring(mouseX, { stiffness: 100, damping: 20 })
+  const smoothY = useSpring(mouseY, { stiffness: 100, damping: 20 })
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [6, -6])
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-6, 6])
+  const parallaxX = useTransform(smoothX, [-0.5, 0.5], [-15, 15])
+  const parallaxY = useTransform(smoothY, [-0.5, 0.5], [-15, 15])
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    mouseX.set(x)
+    mouseY.set(y)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden"
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden"
     >
-      {/* Hero glow backdrop */}
+      {/* Soft light hero background glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'var(--gradient-hero)' }}
         aria-hidden="true"
       />
 
+      {/* Parallax Container */}
       <motion.div
-        className="relative z-10 flex flex-col items-center gap-5 max-w-3xl"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        className="relative z-10 flex flex-col items-center gap-6 max-w-4xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        {/* Status pill */}
+        {/* Status Pill */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05, duration: 0.5 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
         >
-          <StatusPill />
+          <StatusPill text="AVAILABLE FOR OPPORTUNITIES" />
         </motion.div>
 
-        {/* Eyebrow */}
-        <motion.p
-          className="font-mono text-[13px] uppercase tracking-[0.18em]"
-          style={{ color: 'var(--neon-cyan)' }}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          SYSTEM_USER: FRONTEND_DEV
-        </motion.p>
-
-        {/* H1 decode */}
+        {/* H1 Name */}
         <motion.h1
-          className="font-orbitron font-black leading-[1.05] tracking-[0.01em]"
+          className="font-orbitron font-black leading-[1.05] tracking-tight text-slate-900 drop-shadow-sm select-none"
           style={{
-            fontSize: 'clamp(38px, 8vw, 72px)',
-            color: 'var(--text-primary)',
-            textShadow: '0 0 40px rgba(255,46,154,0.15)',
+            fontSize: 'clamp(40px, 8vw, 80px)',
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.3 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
           {nameOutput}
         </motion.h1>
 
-        {/* Sub-heading */}
-        <motion.p
-          className="text-[20px] font-medium"
-          style={{ color: 'var(--text-secondary)' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-        >
-          Frontend Developer &amp; IT Undergrad
-        </motion.p>
-
-        {/* Tagline typewriter */}
+        {/* Role & Subtitle */}
         <motion.div
-          className="max-w-[560px] text-[17px] leading-relaxed min-h-[80px] flex items-start justify-center"
-          style={{ color: 'var(--text-secondary)' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.3 }}
+          className="flex items-center gap-3 font-mono text-[15px] sm:text-[17px] font-semibold tracking-wider text-cyan-600 uppercase bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 rounded-full"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.5 }}
         >
-          <span>
-            {tagline}
-            <span className="cursor-blink" />
-          </span>
+          <Sparkles size={16} className="text-cyan-500 animate-pulse" />
+          <span>B.Tech IT • Developer • Builder</span>
         </motion.div>
 
-        {/* CTA buttons */}
+        {/* Authentic Quote Description */}
+        <motion.p
+          className="max-w-[580px] text-[18px] sm:text-[21px] font-medium leading-relaxed text-slate-600 mt-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          “Building projects to understand how software works.”
+        </motion.p>
+
+        {/* CTA Buttons */}
         <motion.div
-          className="flex items-center gap-4 flex-wrap justify-center"
+          className="flex items-center gap-4 flex-wrap justify-center mt-4"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 0.5, ease: [0.16,1,0.3,1] }}
+          transition={{ delay: 0.65, duration: 0.5 }}
         >
           <Button
             variant="primary"
             onClick={() => scrollTo('#projects')}
+            className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-mono text-sm font-bold tracking-wider text-white bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 shadow-[0_4px_20px_rgba(6,182,212,0.35)] transition-all hover:scale-105"
           >
-            Initialize Projects
+            <span>VIEW PROJECTS</span>
+            <ArrowRight size={16} />
           </Button>
+
           <Button
             variant="secondary"
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-mono text-sm font-bold tracking-wider text-slate-700 bg-white border border-slate-300 hover:border-cyan-500 hover:text-cyan-600 shadow-sm transition-all hover:scale-105"
           >
-            <Download size={14} />
-            Download Data_Log
+            <Download size={16} />
+            <span>DOWNLOAD RESUME</span>
           </Button>
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue */}
-      <motion.button
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-        style={{ color: 'var(--text-muted)' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.5 }}
-        onClick={() => scrollTo('#about')}
-        aria-label="Scroll down"
-      >
-        <div
-          className="w-px h-12"
-          style={{
-            background: 'linear-gradient(to bottom, transparent, var(--neon-cyan))',
-            animation: 'scrollBounce 2s ease-in-out infinite',
-          }}
-        />
-        <span className="font-mono text-[11px] tracking-[0.2em] uppercase">SCROLL</span>
-        <ChevronDown size={14} />
-      </motion.button>
+      {/* Decorative Parallax Background Elements */}
+      <motion.div
+        style={{ x: parallaxX, y: parallaxY }}
+        className="absolute w-[450px] h-[450px] rounded-full bg-cyan-400/10 blur-[100px] pointer-events-none z-0"
+      />
     </section>
   )
 }

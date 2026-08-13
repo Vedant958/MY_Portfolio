@@ -1,14 +1,22 @@
 import { useState, useRef } from 'react'
-import { FolderGit2, Globe, Mail, Copy, Check } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { FolderGit2, Mail, Copy, Check, Send } from 'lucide-react'
 import SectionLabel from '../ui/SectionLabel'
 import GlassPanel from '../ui/GlassPanel'
-import Button from '../ui/Button'
 
 const EMAIL = 'vedantvarshney958@gmail.com'
 
+const LinkedInIcon = ({ size = 22, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+)
+
 export default function Contact() {
   const [copied, setCopied] = useState(false)
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [status, setStatus] = useState('idle')
   const formRef = useRef(null)
 
   const handleCopy = () => {
@@ -20,108 +28,121 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    // Simulate submission (replace with Formspree/EmailJS endpoint)
-    await new Promise(r => setTimeout(r, 1500))
+    await new Promise(r => setTimeout(r, 1200))
     setStatus('sent')
     formRef.current?.reset()
     setTimeout(() => setStatus('idle'), 4000)
   }
 
   return (
-    <section id="contact" className="py-32 px-6 md:px-16 max-w-[1280px] mx-auto">
-      <div className="section-divider mb-20" />
-      <SectionLabel number="05">COMMS</SectionLabel>
+    <section id="contact" className="py-28 px-6 md:px-16 max-w-[1280px] mx-auto">
+      <div className="section-divider mb-16" />
+      <SectionLabel number="05">CONTACT</SectionLabel>
       <h2
-        className="font-orbitron font-bold mb-16"
-        style={{ fontSize: 'clamp(26px,5vw,40px)', color: 'var(--text-primary)', letterSpacing: '0.02em' }}
+        className="font-orbitron font-bold text-slate-900 mb-12"
+        style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}
       >
-        Open a Channel
+        Get In Touch
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 items-start">
-        {/* Left */}
+        {/* Left Side: Contact Channels */}
         <div className="flex flex-col gap-8">
-          <p className="text-[17px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Transmission open — reach out directly or via the form. I reply within 24 hours.
+          <p className="text-[17px] leading-relaxed text-slate-600">
+            Interested in collaborating, asking about my projects, or just discussing web development? Reach out directly via email or social links!
           </p>
 
-          {/* Social icons */}
+          {/* Social Icons */}
           <div className="flex gap-4">
             {[
-              { href: 'https://github.com/Vedant958', Icon: FolderGit2, color: 'var(--text-secondary)', id: 'contact-github' },
-              { href: 'https://linkedin.com/in/vedant2254', Icon: Globe, color: 'var(--neon-cyan)', id: 'contact-linkedin' },
-              { href: `mailto:${EMAIL}`, Icon: Mail, color: 'var(--neon-magenta)', id: 'contact-email' },
-            ].map(({ href, Icon, color, id }) => (
+              { label: 'GitHub', href: 'https://github.com/Vedant958', Icon: FolderGit2, color: '#0F172A', id: 'contact-github' },
+              { label: 'LinkedIn', href: 'https://linkedin.com/in/vedant2254', Icon: LinkedInIcon, color: '#0A66C2', id: 'contact-linkedin' },
+              { label: 'Email', href: `mailto:${EMAIL}`, Icon: Mail, color: '#06B6D4', id: 'contact-email' },
+            ].map(({ label, href, Icon, color, id }) => (
+
               <a
                 key={id}
                 id={id}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-panel hud-corners w-12 h-12 flex items-center justify-center transition-all duration-300 hover:scale-110"
-                style={{ '--hover-color': color }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 20px ${color}40`; e.currentTarget.style.borderColor = color }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = ''; e.currentTarget.style.borderColor = '' }}
-                aria-label={id}
+                className="glass-panel w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm hover:border-cyan-500 hover:shadow-md"
+                aria-label={label}
               >
-                <Icon size={18} style={{ color }} />
+                <Icon size={22} style={{ color }} />
               </a>
             ))}
           </div>
 
-          {/* Email copy */}
+          {/* Quick Copy Email Box */}
           <div
-            className="glass-panel flex items-center justify-between gap-4 px-5 py-4 cursor-pointer group"
+            className="glass-panel flex items-center justify-between gap-4 p-5 cursor-pointer hover:border-cyan-500/50 transition-colors group"
             onClick={handleCopy}
           >
-            <span className="font-mono text-[13px] tracking-wide break-all" style={{ color: 'var(--text-secondary)' }}>
-              {EMAIL}
-            </span>
+            <div className="flex items-center gap-3">
+              <Mail size={18} className="text-cyan-600" />
+              <span className="font-mono text-[14px] font-bold text-slate-800 break-all">
+                {EMAIL}
+              </span>
+            </div>
+
             <button
-              className="flex-shrink-0 p-1 rounded transition-colors"
-              style={{ color: copied ? 'var(--neon-green)' : 'var(--text-muted)' }}
+              className="flex items-center gap-1.5 font-mono text-xs font-semibold px-3 py-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-cyan-500/10 group-hover:text-cyan-700 transition-colors shrink-0"
               aria-label="Copy email"
             >
-              {copied ? <Check size={16} /> : <Copy size={16} />}
+              {copied ? (
+                <>
+                  <Check size={14} className="text-emerald-500" />
+                  <span className="text-emerald-600">COPIED</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={14} />
+                  <span>COPY</span>
+                </>
+              )}
             </button>
           </div>
         </div>
 
-        {/* Right: contact form */}
-        <GlassPanel>
-          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-7">
+        {/* Right Side: Message Form */}
+        <GlassPanel className="p-8 hud-corners">
+          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="hud-input-group">
               <input id="name" type="text" name="name" placeholder=" " required />
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">YOUR NAME</label>
               <div className="hud-input-focus-line" />
             </div>
+
             <div className="hud-input-group">
               <input id="email" type="email" name="email" placeholder=" " required />
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">YOUR EMAIL</label>
               <div className="hud-input-focus-line" />
             </div>
+
             <div className="hud-input-group">
               <textarea id="message" name="message" rows={4} placeholder=" " required />
-              <label htmlFor="message">Message</label>
+              <label htmlFor="message">YOUR MESSAGE</label>
               <div className="hud-input-focus-line" />
             </div>
+
             <button
               type="submit"
               disabled={status === 'sending' || status === 'sent'}
-              className="w-full py-3.5 rounded-lg font-mono text-[14px] font-semibold uppercase tracking-[0.08em] transition-all duration-300 disabled:opacity-70"
-              style={{
-                background: status === 'sent'
-                  ? 'rgba(57,255,158,0.15)'
-                  : 'var(--gradient-cta)',
-                color: status === 'sent' ? 'var(--neon-green)' : '#000',
-                boxShadow: status === 'sent' ? '0 0 20px rgba(57,255,158,0.3)' : '0 0 24px rgba(255,46,154,0.3)',
-              }}
+              className="w-full py-4 rounded-xl font-mono text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 shadow-[0_4px_20px_rgba(6,182,212,0.3)] transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 flex items-center justify-center gap-2"
             >
-              {status === 'sending'
-                ? 'TRANSMITTING...'
-                : status === 'sent'
-                ? 'MESSAGE_SENT ✔'
-                : 'Transmit Message'}
+              {status === 'sending' ? (
+                <span>TRANSMITTING...</span>
+              ) : status === 'sent' ? (
+                <span className="text-emerald-100 flex items-center gap-1.5">
+                  <Check size={16} /> MESSAGE SENT
+                </span>
+              ) : (
+                <>
+                  <span>SEND MESSAGE</span>
+                  <Send size={16} />
+                </>
+              )}
             </button>
           </form>
         </GlassPanel>

@@ -1,20 +1,16 @@
 import { motion } from 'framer-motion'
 
 export default function Button({ children, variant = 'primary', onClick, href, className = '', ...props }) {
-  const base = `inline-flex items-center gap-2 px-6 py-3 font-mono text-[14px] font-semibold uppercase tracking-[0.08em] rounded-lg hud-corners transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-void ${
+  const base = `inline-flex items-center gap-2 px-7 py-3.5 font-mono text-[14px] font-bold uppercase tracking-[0.08em] rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
     variant === 'primary'
-      ? 'text-void focus:ring-magenta'
-      : 'text-cyan border border-white/10 bg-transparent hover:border-white/20 focus:ring-cyan'
+      ? 'text-white bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 shadow-[0_4px_20px_rgba(6,182,212,0.3)] focus:ring-cyan-500'
+      : 'text-slate-700 bg-white border border-slate-300 hover:border-cyan-500 hover:text-cyan-600 shadow-sm focus:ring-cyan-500'
   } ${className}`
-
-  const style = variant === 'primary'
-    ? { background: 'var(--gradient-cta)', boxShadow: '0 0 24px rgba(255,46,154,0.3)' }
-    : {}
 
   const El = href ? 'a' : 'button'
   return (
-    <motion.div whileTap={{ scale: 0.97 }} whileHover={{ scale: 1.02 }}>
-      <El className={base} style={style} onClick={onClick} href={href} {...props}>
+    <motion.div whileTap={{ scale: 0.97 }} whileHover={{ scale: 1.03 }}>
+      <El className={base} onClick={onClick} href={href} {...props}>
         {children}
       </El>
     </motion.div>

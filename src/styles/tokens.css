@@ -1,31 +1,33 @@
-/* ─── DESIGN TOKENS — Cyberpunk HUD Portfolio ───────────────── */
+/* ─── DESIGN TOKENS — Light Futuristic Portfolio ─────────────── */
 :root {
   /* Backgrounds */
-  --bg-void:          #05050A;
-  --bg-panel:         #0D0D18;
-  --bg-panel-raised:  #12121F;
+  --bg-void:          #F8FAFC;
+  --bg-panel:         rgba(255, 255, 255, 0.85);
+  --bg-panel-raised:  #FFFFFF;
 
-  /* Neon Accents */
-  --neon-magenta:     #FF2E9A;
-  --neon-cyan:        #0FF0FC;
-  --neon-purple:      #7B2FFF;
-  --neon-green:       #39FF9E;
+  /* Accents */
+  --neon-cyan:        #06B6D4;
+  --neon-cyan-glow:   rgba(6, 182, 212, 0.25);
+  --neon-green:       #10B981;
+  --neon-magenta:     #D946EF;
+  --neon-purple:      #8B5CF6;
 
-  /* Text */
-  --text-primary:     #EDEDF5;
-  --text-secondary:   #9A9AB0;
-  --text-muted:       #5C5C70;
+  /* Typography */
+  --text-primary:     #0F172A;
+  --text-secondary:   #475569;
+  --text-muted:       #94A3B8;
 
-  /* Borders */
-  --border-glass:       rgba(255,255,255,0.08);
-  --border-glass-hover: rgba(255,255,255,0.16);
+  /* Glass & Borders */
+  --border-glass:       rgba(203, 213, 225, 0.6);
+  --border-glass-hover: rgba(6, 182, 212, 0.45);
 
-  /* HUD overlay */
-  --grid-line:         rgba(15,240,252,0.05);
-  --overlay-scanline:  rgba(255,255,255,0.02);
+  /* Tech Grids */
+  --grid-line:         rgba(6, 182, 212, 0.07);
+  --overlay-scanline:  rgba(15, 23, 42, 0.015);
 
   /* Gradients */
-  --gradient-hero:   radial-gradient(circle at 50% 30%, rgba(255,46,154,0.25) 0%, rgba(123,47,255,0.12) 35%, rgba(5,5,10,0) 70%);
-  --gradient-cta:    linear-gradient(90deg, #FF2E9A 0%, #7B2FFF 100%);
-  --gradient-divider:linear-gradient(90deg, transparent 0%, #0FF0FC 50%, transparent 100%);
+  --gradient-hero:   radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.12) 0%, rgba(139, 92, 246, 0.04) 45%, rgba(248, 250, 252, 0) 70%);
+  --gradient-cta:    linear-gradient(90deg, #06B6D4 0%, #10B981 100%);
+  --gradient-divider:linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.35) 50%, transparent 100%);
 }
+
