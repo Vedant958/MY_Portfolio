@@ -129,18 +129,18 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === 'sending' || status === 'sent'}
-              className="w-full py-4 rounded-xl font-mono text-sm font-bold uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 shadow-[0_4px_20px_rgba(6,182,212,0.3)] transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-xl font-mono text-sm font-extrabold uppercase tracking-wider text-white bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 flex items-center justify-center gap-2 cursor-pointer"
             >
               {status === 'sending' ? (
-                <span>TRANSMITTING...</span>
+                <span className="text-cyan-400 font-extrabold">TRANSMITTING...</span>
               ) : status === 'sent' ? (
-                <span className="text-emerald-100 flex items-center gap-1.5">
-                  <Check size={16} /> MESSAGE SENT
+                <span className="text-emerald-400 font-extrabold flex items-center gap-1.5">
+                  <Check size={18} className="text-emerald-400" /> MESSAGE SENT
                 </span>
               ) : (
                 <>
-                  <span>SEND MESSAGE</span>
-                  <Send size={16} />
+                  <span className="text-white font-extrabold">SEND MESSAGE</span>
+                  <Send size={16} className="text-cyan-400" />
                 </>
               )}
             </button>

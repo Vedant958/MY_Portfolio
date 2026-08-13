@@ -112,10 +112,10 @@ export default function Hero() {
           <Button
             variant="primary"
             onClick={() => scrollTo('#projects')}
-            className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-mono text-sm font-bold tracking-wider text-white bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 shadow-[0_4px_20px_rgba(6,182,212,0.35)] transition-all hover:scale-105"
+            className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-mono text-sm font-extrabold tracking-wider text-white bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all hover:scale-105"
           >
             <span>VIEW PROJECTS</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="text-cyan-400" />
           </Button>
 
           <Button
