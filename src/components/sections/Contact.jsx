@@ -42,32 +42,24 @@ export default function Contact() {
         className="font-orbitron font-bold text-slate-900 mb-12"
         style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}
       >
-        Terminal Channel
+        Get In Touch
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 items-start">
         {/* Left Side: Contact Channels */}
         <div className="flex flex-col gap-8">
+          <div className="w-full h-40 overflow-hidden rounded-xl border border-slate-200/60 bg-white shadow-sm">
+            <img
+              src="https://lh3.googleusercontent.com/aida/AP1WRLshuT3gOjeS47RFExWbPklrpQ_pOf3zT3_XA1oY4Nm1XvHW9JF81-74B8Qbt-VYcUFB_BbxvZef3dY0RMMn0ehsbJh9BJz9b_UDulwAT1D7mPtQ4h9IwQfgz7YWPyTflSJ5lDFRlcXnrmRJnEOUviu03yWPVjAj815HDzxDtTGdi75xsKwTQWrqdGzu8CsGriELvVI6Fwym4OuI1_Y_IVl95thbjob4dcg5Jk-Kyb67Hv7Yg3rbFCmw"
+              alt="Connection abstract visual"
+              className="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+            />
+          </div>
+
           <p className="text-[17px] leading-relaxed text-slate-600">
             Open channel — reach out directly via email or social links. I respond to inquiries regarding frontend development and project collaborations.
           </p>
 
-          {/* Terminal Info Widget */}
-          <div className="p-6 rounded-2xl bg-slate-900 text-slate-200 border border-cyan-500/30 shadow-lg font-mono text-xs flex flex-col gap-3">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <Terminal size={15} className="text-cyan-400" />
-                <span className="text-slate-300 font-bold">TRANSMISSION_TERMINAL // v2.0</span>
-              </div>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <span className="text-cyan-400">$</span> ping -c 1 vedantvarshney958@gmail.com
-            </div>
-            <div className="text-emerald-400">
-              STATUS: 200 OK — CHANNEL OPEN
-            </div>
-          </div>
 
           {/* Social Icons */}
           <div className="flex gap-4">
@@ -148,7 +140,7 @@ export default function Contact() {
               className="w-full py-4 rounded-xl font-mono text-sm font-extrabold uppercase tracking-wider text-white bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_4px_20px_rgba(6,182,212,0.25)] transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 flex items-center justify-center gap-2 cursor-pointer"
             >
               {status === 'sending' ? (
-                <span className="text-cyan-400 font-extrabold">TRANSMITTING...</span>
+                <span className="text-cyan-400 font-extrabold">SENDING...</span>
               ) : status === 'sent' ? (
                 <span className="text-emerald-400 font-extrabold flex items-center gap-1.5">
                   <Check size={18} className="text-emerald-400" /> MESSAGE SENT

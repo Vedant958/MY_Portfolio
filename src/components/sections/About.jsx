@@ -40,6 +40,14 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           <div className="glass-panel p-8 flex flex-col gap-5">
+            <div className="w-full h-48 mb-2 overflow-hidden rounded-xl border border-slate-200/60 bg-white shadow-sm">
+              <img
+                src="https://lh3.googleusercontent.com/aida/AP1WRLvjJZvQwXYxvhwAtC1DuX0cqHfaJNbfk7vb6vGhPanjO_eVPO9bht1J1UOXsF1fIp8UvEBzZ2aWORELRix6VjsqUG_R1R2ijYhIMqMFmVe-4nlpV1vIxFt7mU-Iu_fEgV8Oi7uRuWpr-8ExPbGFZbeqESN-Tppl39QpFB-oDLlCMVLHTb9W_0KtugPDExLadmZG0etqmHhemBQxi7x6leQD8PBn4mk1h02jIErVafjckRMDcu-biwarSg"
+                alt="Learning by building abstract visual"
+                className="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+            
             <p className="text-[18px] sm:text-[20px] font-medium leading-relaxed text-slate-800">
               Hello! I'm <span className="font-bold text-cyan-600">Vedant Varshney</span>, a B.Tech Information Technology student at ACET, Aligarh.
             </p>
@@ -80,10 +88,9 @@ export default function About() {
           <GlassPanel className="p-7 hud-corners flex flex-col gap-6">
             <div className="flex items-center justify-between pb-4 border-b border-slate-200/80">
               <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest text-slate-800 uppercase">
-                <Terminal size={16} className="text-cyan-600" />
-                <span>SYSTEM STATUS</span>
+                <User size={16} className="text-cyan-600" />
+                <span>AT A GLANCE</span>
               </div>
-              <StatusPill text="ONLINE" />
             </div>
 
             <div className="flex flex-col gap-4">
@@ -113,7 +120,7 @@ export default function About() {
             <div className="p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 mt-1">
               <div className="flex items-center gap-2 font-mono text-xs font-bold text-cyan-700 uppercase mb-1">
                 <Code size={14} />
-                <span>CURRENT OBJECTIVE</span>
+                <span>CURRENTLY FOCUSING ON</span>
               </div>
               <p className="text-[13px] leading-relaxed text-slate-600">
                 Building browser games and interactive React applications to sharpen problem solving.

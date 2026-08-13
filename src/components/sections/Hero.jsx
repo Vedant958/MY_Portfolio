@@ -128,7 +128,7 @@ export default function Hero() {
 
         {/* Stitch Generated Hero Visual Artwork Motif */}
         <motion.div
-          className="w-full mt-4"
+          className="w-full max-w-[500px] mt-8 px-4"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}

@@ -4,7 +4,7 @@ export default function ProjectVisualVoid({ hovered = false }) {
   return (
     <div className="relative w-full h-52 overflow-hidden rounded-t-2xl border-b border-slate-200/80 bg-slate-50">
       <motion.img
-        src="https://lh3.googleusercontent.com/aida/AP1WRLsRA-JaTPrjt4YD_rao4R1vcftSkL-hDY8W5AEexAz1BqtQZWRuIsWbyk-H15VYt5-nk5jESuZQMffyX5BLCleCnsAisvlO2fgLmZp8MjZa11TogmqBG7lH2fSxa2uz41scK-y_DcoEVZMu5i_mbXnT_Ps8UxEQv-1PXvy64YQHPxnVwAFNhmjZtmNGbYeJghpKnbST0BL6Z2SBtlAE3Ey8gkXHvspazuaeyTwpUt_q0JOxMgezr1v9"
+        src="https://lh3.googleusercontent.com/aida/AP1WRLteEUUHQOVMEEoNlc5exbszXeVrtf1_xpOLxBRYqQ1fjBgQHr0q9r5qWlxgcAfRvPw6TodtuYCT6c_Gk9_T37wJtF7uEneRlYadsGdXl73S-fCOfCy7HL0ujB7bH1g72yjWLz1UK4e-UJGdwyD8RaddF7n-hUup3PhuJhvkBoeeVcbVNv9i-ihBPt2oYPQEgBdx17l3rzw7kmCLxAcpfPXt4E4yIVdIPG7W27kmxGYMEZ-TQtbp-eAa"
         alt="VOID Project Preview"
         className="w-full h-full object-cover"
         animate={hovered ? { scale: 1.06 } : { scale: 1 }}

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Cpu, Code2, Sparkles, Terminal, Brain, CheckCircle2, ChevronDown } from 'lucide-react'
+import { Cpu, Code2, Sparkles, Terminal, Brain, ChevronDown, Hash, Layout, Binary, Triangle, GitBranch, FolderGit2, Box, Zap } from 'lucide-react'
 import SectionLabel from '../ui/SectionLabel'
 import GlassPanel from '../ui/GlassPanel'
 import CurrentFocus from './CurrentFocus'
+import { SkillNode } from '../ui/VisualSystems'
 import { skillCategories } from '../../data/skills'
 
 const ICONS = { Cpu, Code2, Sparkles, Terminal, Brain }
@@ -80,24 +81,36 @@ export default function Skills() {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="flex flex-col gap-2 mt-auto"
+                      className="grid grid-cols-2 gap-3 mt-4"
                     >
-                      {group.skills.map((skill) => (
-                        <div
-                          key={skill.name}
-                          className="p-3 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-between hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all group"
-                        >
-                          <div className="flex items-center gap-2">
-                            <CheckCircle2 size={15} className="text-cyan-600 group-hover:scale-110 transition-transform" />
-                            <span className="font-sans text-xs font-bold text-slate-800">
-                              {skill.name}
-                            </span>
-                          </div>
-                          <span className="font-mono text-[10px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded">
-                            {skill.badge}
-                          </span>
-                        </div>
-                      ))}
+                      {group.skills.map((skill) => {
+                        const iconMap = {
+                          'C': Terminal,
+                          'Python': Code2,
+                          'HTML': Hash,
+                          'CSS': Layout,
+                          'JavaScript': Binary,
+                          'React': Triangle,
+                          'Git': GitBranch,
+                          'GitHub': FolderGit2,
+                          'Vercel': Box,
+                          'VS Code': Zap,
+                          'Problem-Solving': Brain,
+                          'Analytical Thinking': Cpu
+                        }
+                        const SkillIcon = iconMap[skill.name] || Terminal
+                        const isCyan = ['C', 'HTML', 'JavaScript', 'Git', 'Vercel', 'Problem-Solving'].includes(skill.name)
+
+                        return (
+                          <SkillNode 
+                            key={skill.name}
+                            icon={SkillIcon}
+                            label={skill.name}
+                            level={skill.badge}
+                            color={isCyan ? 'cyan' : 'emerald'}
+                          />
+                        )
+                      })}
                     </motion.div>
                   )}
                 </AnimatePresence>
